@@ -6,16 +6,16 @@ function [ G_fund ] = read_fund_data(fund_file_name, index_dates)
     G_fund = zeros(row,1);
 
     for i = 1:row
-        fund_dates(i) = fund(i,:).Data;
+        fund_dates(i) = fund(i,:).DATA;
     end;
 
     if isequal(index_dates, fund_dates)
         for i = 1:row
-            G_fund(i) = fund(i,:).Variacao;
+            G_fund(i) = fund(i,:).VARIACAO;
         end;
     else
         fund_name = strsplit(fund_file_name, '_');
-        fprintf('As datas do fundo %s não condizem com as datas do índice', char(fund_name(1)))
+        fprintf('As datas do fundo %s nï¿½o condizem com as datas do ï¿½ndice', char(fund_name(1)))
     end;
 
 end

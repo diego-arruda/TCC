@@ -1,12 +1,14 @@
 clear all; close all; clc
 
-index_file_name = 'ibovespa_dados_historicos_tratado.csv';
+path_to_data = '../../python/dados_historicos_tratados/';
+
+index_file_name = strcat(path_to_data,'ibovespa_dados_historicos_tratado_JAN20-JAN22.csv');
 fund_file_names = [
-    'b3sa3_dados_historicos_tratado.csv',
-    'bbdc4_dados_historicos_tratado.csv',
-    'itub4_dados_historicos_tratado.csv',
-    'petr4_dados_historicos_tratado.csv',
-    'vale3_dados_historicos_tratado.csv'
+   strcat(path_to_data,'b3sa3_dados_historicos_tratado_JAN20-JAN22.csv'),
+   strcat(path_to_data,'bbdc4_dados_historicos_tratado_JAN20-JAN22.csv'),
+   strcat(path_to_data,'itub4_dados_historicos_tratado_JAN20-JAN22.csv'),
+   strcat(path_to_data,'petr4_dados_historicos_tratado_JAN20-JAN22.csv'),
+   strcat(path_to_data,'vale3_dados_historicos_tratado_JAN20-JAN22.csv')
     ];
 
 [y, row, index_dates] = read_market_index_data(index_file_name);
@@ -23,19 +25,19 @@ end;
 method = 'DMinMax';
 
 if strcmpi('MAD', method)
-    fprintf('Método %s.\n', method)
+    fprintf('Mï¿½todo %s.\n', method)
     [ w, z_otimo ] = mad_method( y, Gamma, row, n_fund );
 elseif strcmpi('MinMax', method)
-    fprintf('Método %s.\n', method)
+    fprintf('Mï¿½todo %s.\n', method)
     [ w, z_otimo ] = minmax_method( y, Gamma, row, n_fund );
 elseif strcmpi('MADD', method)
-    fprintf('Método %s.\n', method)
+    fprintf('Mï¿½todo %s.\n', method)
     [ w, z_otimo ] = madd_method( y, Gamma, row, n_fund );
 elseif strcmpi('DMinMax', method)
-    fprintf('Método %s.\n', method)
+    fprintf('Mï¿½todo %s.\n', method)
     [ w, z_otimo ] = dminmax_method( y, Gamma, row, n_fund );
 else
-    fprintf('Não há a implementação do método %s. Por favor, escolha outro método.\n', method)
+    fprintf('Nï¿½o hï¿½ a implementaï¿½ï¿½o do mï¿½todo %s. Por favor, escolha outro mï¿½todo.\n', method)
 end;
 
     
