@@ -15,7 +15,7 @@ function [ G_fund ] = read_fund_data(fund_file_name, index_dates)
         end;
     else
         fund_name = strsplit(fund_file_name, '_');
-        fprintf('As datas do fundo %s n�o condizem com as datas do �ndice', char(fund_name(1)))
+        fprintf('As datas do fundo %s nao condizem com as datas do indice', char(fund_name(1)))
     end;
 
 end

@@ -25,19 +25,19 @@ end;
 method = 'DMinMax';
 
 if strcmpi('MAD', method)
-    fprintf('M�todo %s.\n', method)
+    fprintf('Metodo %s.\n', method)
     [ w, z_otimo ] = mad_method( y, Gamma, row, n_fund );
 elseif strcmpi('MinMax', method)
-    fprintf('M�todo %s.\n', method)
+    fprintf('Metodo %s.\n', method)
     [ w, z_otimo ] = minmax_method( y, Gamma, row, n_fund );
 elseif strcmpi('MADD', method)
-    fprintf('M�todo %s.\n', method)
+    fprintf('Metodo %s.\n', method)
     [ w, z_otimo ] = madd_method( y, Gamma, row, n_fund );
 elseif strcmpi('DMinMax', method)
-    fprintf('M�todo %s.\n', method)
+    fprintf('Metodo %s.\n', method)
     [ w, z_otimo ] = dminmax_method( y, Gamma, row, n_fund );
 else
-    fprintf('N�o h� a implementa��o do m�todo %s. Por favor, escolha outro m�todo.\n', method)
+    fprintf('Nao ha implementacao do metodo %s. Por favor, escolha outro metodo.\n', method)
 end;
 
     
