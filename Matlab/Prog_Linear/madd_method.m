@@ -1,7 +1,5 @@
 function [ w, z_otimo ] = madd_method( y, Gamma, row, n_fund )
     var = 2*row+n_fund;
-%     rest_ig = 1;
-%     rest_des = row;
 
     I = eye(row);
 
