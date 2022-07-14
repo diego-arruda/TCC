@@ -78,8 +78,8 @@ set(gcf, 'PaperPosition', [0 0 30 15]);
 saveas(gca, fullfile(fname, fig_name));
 
 final_T = table(datas,final_result1, final_result2, final_result3, final_result4);
-final_T.Properties.VariableNames = [{'Data', 'MAD', 'MinMax', 'MADD', 'DMinMax'}];
+final_T.Properties.VariableNames = [{'datas', 'MAD', 'MinMax', 'MADD', 'DMinMax'}];
 
 ftable_name = ('C:\Users\lilea\Documents\TCC\Matlab\Prog_Linear\tabelas');
 table_name = sprintf('%s-%s_%s-%s.csv', initial_date, final_date, test_initial_date, test_final_date);
-writetable(final_T,fullfile(ftable_name, table_name));
+writetable(final_T,fullfile(fname, fig_name));
