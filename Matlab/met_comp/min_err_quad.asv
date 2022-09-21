@@ -1,0 +1,43 @@
+function [ w, z_otimo ] = min_err_quad( y, Gamma, row, n_fund )
+
+% Input:
+% y = 
+% Gamma =
+% row = número de meses
+% n_fund = quantidade de ações
+% z_otimo: valor da função objetivo
+
+% L = matriz com linha - ano, coluna - rentabilidade
+% M = vetor com linha - ano, rentablidade do mercado
+% x = 1 - z, ou outros - pesos
+% fval: valor da função objetivo 
+
+    H = 2*Gamma'*Gamma;
+    
+    f = -2*y'*Gamma;
+    
+   %var = 2*row+n_fund;
+
+    I = eye(n_fund);
+    A = [-I];
+    b = zeros(n_fund,1);
+
+    Aeq = ones(1,n_fund); %Restrição e*w = 1 sendo e = Aeq
+    %et = ones(row,1);
+
+    %z = zeros(1,row);
+    %z1 = zeros(1,n_fund);
+
+    %f = [et' et' z1];
+
+    %Aeq = [I -I Gamma;
+           %z z e'];
+    beq = 1;
+    %lb = zeros(var,1);
+
+    [x, z] = quadprog(H,f,A,b,Aeq,beq);
+    w = x(end-(n_fund-1):end,1);
+    z_otimo = z + y'*y;
+
+end
+
