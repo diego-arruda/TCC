@@ -14,7 +14,7 @@ function [ w, z_otimo ] = min_var_err( Gamma, n_fund, n_total_fund, omegaB )
 
     Aeq = [r'; % restrição de que a soma dos pesos de w e wb deve ser igual
            e; % restrição de que a soma dos pesos de w deve ser 1
-           zeros(n_total_fund-n_fund,5) eye(n_total_fund-n_fund)]; 
+           zeros(n_total_fund-n_fund,n_fund) eye(n_total_fund-n_fund)]; 
        % restrição para apenas os 5 primeiros pesos de w serem diferentes de 0
     beq = [omegaB'*r;
            1;
