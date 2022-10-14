@@ -40,20 +40,29 @@ def format_files(active, dt_start, dt_end, interval):
 
     df.to_csv(fullname,index=False)
 
+    return fullname
 
-def load_data(benchmark, ativos, start_date, end_date):
+def load_data2(ativo, start_date, end_date):
     interval = 'm'
-    # format_files(benchmark,start_date,end_date,interval)
-    # for ativo in ativos:
-    #     format_files(ativo,start_date,end_date,interval)
-    #     print(ativo)
-    try: 
-        format_files(benchmark,start_date,end_date,interval)
-        for ativo in ativos:
-            format_files(ativo,start_date,end_date,interval)
+    fullname = format_files(ativo,start_date,end_date,interval)
+    return fullname
 
-    except Exception as e:
-        print(e)
-        return 1
 
-    return 0
+# def load_data(benchmark, ativos, start_date, end_date):
+#     interval = 'm'
+#     # format_files(benchmark,start_date,end_date,interval)
+#     # for ativo in ativos:
+#     #     format_files(ativo,start_date,end_date,interval)
+#     #     print(ativo)
+#     try: 
+#         format_files(benchmark,start_date,end_date,interval)
+#         for ativo in ativos:
+#             format_files(ativo,start_date,end_date,interval)
+
+#     except Exception as e:
+#         print(e)
+#         return 1
+
+#     return 0
+
+
