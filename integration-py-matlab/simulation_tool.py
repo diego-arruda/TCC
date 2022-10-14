@@ -20,7 +20,7 @@ out_flag = True
 
 while out_flag:
 
-    benchmark,n_ativos,ativos,modelo, start_date, end_date = initialization()
+    benchmark,n_ativos,ativos,metodo,start_date,end_date = initialization()
 
     active_list = list()
 
@@ -46,6 +46,8 @@ while out_flag:
 
     y = list_of_df[0]["variacao"].to_list()
 
+    n_periods = matlab.double(len(y))
+
     Gamma = np.array(Gamma).T
 
     y = matlab.double(y)
@@ -54,7 +56,39 @@ while out_flag:
 
     print("Iniciando simulação...\n")
 
-    w, z_otimo = eng.min_err_nao_sist(y, Gamma, n_ativos, nargout=2)
+    if metodo == '1':
+        w, z_otimo = eng.mad_method(y, Gamma, n_periods, n_ativos, nargout=2)
+    elif metodo == '2':
+        w, z_otimo = eng.minmax_method(y, Gamma, n_periods, n_ativos, nargout=2)
+    elif metodo == '3':
+        w, z_otimo = eng.madd_method(y, Gamma, n_periods, n_ativos, nargout=2)
+    elif metodo == '4':
+        w, z_otimo = eng.dminmax_method(y, Gamma, n_periods, n_ativos, nargout=2)
+    elif metodo == '5':
+        w, z_otimo = eng.min_var_err(Gamma, n_ativos, n_total_benchmark, omegaB, nargout=2) # criar os parametros
+    elif metodo == '6':
+        w, z_otimo = eng.min_err_nao_sist(y, Gamma, n_ativos, nargout=2)
+    elif metodo == '7':
+        w, z_otimo = eng.min_err_quad(y, Gamma, n_periods, n_ativos, nargout=2)
+    elif metodo == '8':
+        w1, z_otimo1 = eng.mad_method(y, Gamma, n_periods, n_ativos, nargout=2)
+        w2, z_otimo2 = eng.minmax_method(y, Gamma, n_periods, n_ativos, nargout=2)
+        w3, z_otimo3 = eng.madd_method(y, Gamma, n_periods, n_ativos, nargout=2)
+        w4, z_otimo4 = eng.dminmax_method(y, Gamma, n_periods, n_ativos, nargout=2)
+    elif metodo == '9':
+        w5, z_otimo5 = eng.min_var_err(Gamma, n_ativos, n_total_benchmark, omegaB, nargout=2) # criar os parametros
+        w6, z_otimo6 = eng.min_err_nao_sist(y, Gamma, n_ativos, nargout=2)
+        w7, z_otimo7 = eng.min_err_quad(y, Gamma, n_periods, n_ativos, nargout=2)
+    elif metodo == '10':
+        w1, z_otimo1 = eng.mad_method(y, Gamma, n_periods, n_ativos, nargout=2)
+        w2, z_otimo2 = eng.minmax_method(y, Gamma, n_periods, n_ativos, nargout=2)
+        w3, z_otimo3 = eng.madd_method(y, Gamma, n_periods, n_ativos, nargout=2)
+        w4, z_otimo4 = eng.dminmax_method(y, Gamma, n_periods, n_ativos, nargout=2)
+        w5, z_otimo5 = eng.min_var_err(Gamma, n_ativos, n_total_benchmark, omegaB, nargout=2) # criar os parametros
+        w6, z_otimo6 = eng.min_err_nao_sist(y, Gamma, n_ativos, nargout=2)
+        w7, z_otimo7 = eng.min_err_quad(y, Gamma, n_periods, n_ativos, nargout=2)
+    else:
+        sys.exit("Método inválido!")
 
     print(w)
 
