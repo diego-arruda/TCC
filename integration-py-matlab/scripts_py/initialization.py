@@ -1,7 +1,7 @@
 
 def initialization(): 
-    benchmark = input("Escolha o benchmark que deseja rastrear\n").upper()
-    n_ativos = input("Quatos ativos deseja utilizar no rastreamento?\n")
+    benchmark = input("Escolha o benchmark que deseja rastrear.\n").upper()
+    n_ativos = input("Quantos ativos deseja utilizar no rastreamento?\n")
     n_ativos = int(n_ativos)
 
     print("Digite o código de cada ativo, um por vez.")

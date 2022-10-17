@@ -1,4 +1,4 @@
-function [ w, z_otimo ] = min_err_nao_sist( y, Gamma, n_fund )
+function [ w, z_otimo, exitflag ] = min_err_nao_sist( y, Gamma, n_fund )
 
     Sigma = cov(Gamma);
     
@@ -21,6 +21,6 @@ function [ w, z_otimo ] = min_err_nao_sist( y, Gamma, n_fund )
            betas];
     beq = [1 1];
 
-    [x, z_otimo] = quadprog(H,f,A,b,Aeq,beq);
+    [x, z_otimo, exitflag] = quadprog(H,f,A,b,Aeq,beq);
     w = x(end-(n_fund-1):end,1);
 end

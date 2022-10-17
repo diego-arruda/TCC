@@ -1,4 +1,4 @@
-function [ w, z_otimo ] = minmax_method( y, Gamma, row, n_fund )
+function [ w, z_otimo, exitflag ] = minmax_method( y, Gamma, row, n_fund )
     var = n_fund+1;
 %     rest_ig = 2*row;
 %     rest_des = 1;
@@ -23,7 +23,7 @@ function [ w, z_otimo ] = minmax_method( y, Gamma, row, n_fund )
 
     lb = zeros(var,1);
 
-    [x, z_otimo] = linprog(f,A,b,Aeq,beq,lb);
+    [x, z_otimo, exitflag] = linprog(f,A,b,Aeq,beq,lb);
     w = x(end-(n_fund-1):end,1);
 
 end
