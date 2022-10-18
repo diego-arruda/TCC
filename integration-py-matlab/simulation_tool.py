@@ -2,6 +2,7 @@ from scripts_py.load_data import load_data2
 from scripts_py.initialization import initialization 
 from scripts_py.execute_test import execute_test
 from scripts_py.read_data import read_data
+from scripts_py.save_results import save_results
 # from scripts_py.load_data import load_data
 import sys
 import matlab.engine
@@ -147,12 +148,13 @@ while out_flag:
             else:
                 carteira = execute_test(w[i],ativos,sim_init_date, sim_final_date)
                 resultado = carteira.sum(axis=1)
+                save_results(resultado,metodos_executados[i],sim_init_date, sim_final_date,False)
                 print(resultado)
                 
 
         # results = pd.DataFrame(['carteira','benchmark'])
-        # benchmark_data = read_data(benchmark,start_date,end_date)
-        # results['benchmark'] = benchmark_data['variacao']
+        benchmark_data = read_data(benchmark,sim_init_date,sim_final_date)
+        save_results(benchmark_data['variacao'],benchmark,sim_init_date,sim_final_date,True)
 
         # print(results)
 
