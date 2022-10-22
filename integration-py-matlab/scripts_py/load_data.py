@@ -18,10 +18,10 @@ def format_files(active, dt_start, dt_end, interval):
                        'High': 'maxima', 
                        'Low': 'minima', 
                        'Open': 'abertura', 
-                       'Adj Close': 'fechamento_adj', 
+                       'Adj Close': 'fechamento', 
                        'Volume': 'volume'}, inplace=True)
-    df['variacao'] = (df['fechamento_adj']-df['abertura'])/df['abertura']
-    df = df[['data', 'maxima', 'minima', 'abertura', 'fechamento_adj', 'variacao']]
+    df['variacao'] = (df['fechamento']-df['abertura'])/df['abertura']
+    df = df[['data', 'maxima', 'minima', 'abertura', 'fechamento', 'variacao']]
     
     start_month = datetime.datetime.strptime(dt_start, "%Y-%m-%d").strftime("%b").upper()
     start_year = datetime.datetime.strptime(dt_start, "%Y-%m-%d").strftime("%y")
@@ -40,12 +40,12 @@ def format_files(active, dt_start, dt_end, interval):
 
     df.to_csv(fullname,index=False)
 
-    return fullname
+    return df
 
-def load_data2(ativo, start_date, end_date):
+def load_data(ativo, start_date, end_date):
     interval = 'm'
-    fullname = format_files(ativo,start_date,end_date,interval)
-    return fullname
+    df = format_files(ativo,start_date,end_date,interval)
+    return df
 
 
 # def load_data(benchmark, ativos, start_date, end_date):

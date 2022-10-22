@@ -24,8 +24,8 @@ def initialization():
 
     modelo = input("Qual modelo deseja utilizar?\n")
 
-    start_date = input("Data inicial (AAAA-MM-dd): ")
-    end_date = input("Data final (AAAA-MM-dd): ")
+    start_date = input("Data de treinamento inicial (AAAA-MM-dd): ")
+    end_date = input("Data de treinamento final (AAAA-MM-dd): ")
 
     return benchmark,n_ativos,ativos,modelo, start_date, end_date
 

@@ -1,9 +1,8 @@
-from scripts_py.load_data import load_data2
+from scripts_py.load_data import load_data
 from scripts_py.initialization import initialization 
 from scripts_py.execute_test import execute_test
-from scripts_py.read_data import read_data
+# from scripts_py.read_data import read_data
 from scripts_py.save_results import save_results
-# from scripts_py.load_data import load_data
 import sys
 import matlab.engine
 import numpy as np
@@ -25,26 +24,10 @@ while out_flag:
 
     benchmark,n_ativos,ativos,metodo,start_date,end_date = initialization()
     list_of_df = list()
-    list_of_df.append(read_data(benchmark,start_date,end_date))
+    list_of_df.append(load_data(benchmark,start_date,end_date))
 
     for ativo in ativos:
-        list_of_df.append(read_data(ativo,start_date,end_date))
-
-    # active_list = list()
-
-    # fullname_benchmark = load_data2(benchmark, start_date, end_date)
-
-    # active_list.append(fullname_benchmark)
-
-    # print("Carregando dados dos ativos...\n")
-    # for ativo in ativos:
-    #     fullname_ativo = load_data2(ativo, start_date, end_date)
-    #     active_list.append(fullname_ativo)
-
-    # list_of_df = list()
-
-    # for active in active_list:
-    #     list_of_df.append(pd.read_csv(active))
+        list_of_df.append(load_data(ativo,start_date,end_date))
 
     Gamma = list()
 
@@ -153,7 +136,7 @@ while out_flag:
                 
 
         # results = pd.DataFrame(['carteira','benchmark'])
-        benchmark_data = read_data(benchmark,sim_init_date,sim_final_date)
+        benchmark_data = load_data(benchmark,sim_init_date,sim_final_date)
         save_results(benchmark_data['variacao'],benchmark,sim_init_date,sim_final_date,True)
 
         # print(results)
