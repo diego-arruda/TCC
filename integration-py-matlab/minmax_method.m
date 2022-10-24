@@ -1,4 +1,5 @@
 function [ w, z_otimo, exitflag ] = minmax_method( y, Gamma, row, n_fund )
+    Gamma_T = Gamma';
     var = n_fund+1;
 %     rest_ig = 2*row;
 %     rest_des = 1;
@@ -12,8 +13,8 @@ function [ w, z_otimo, exitflag ] = minmax_method( y, Gamma, row, n_fund )
 %     z = zeros(1,row);
     z1 = zeros(1,n_fund);
 
-    A = [-et Gamma;
-         -et -Gamma];
+    A = [-et Gamma_T;
+         -et -Gamma_T];
     b = [y -y];
 
     Aeq = [0 e'];

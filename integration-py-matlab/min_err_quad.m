@@ -1,16 +1,17 @@
 function [ w, z_otimo, exitflag ] = min_err_quad( y, Gamma, row, n_fund )
+    Gamma_T = Gamma';
 
 % Input:
-% Gamma = matriz com linha - ano, coluna - rentabilidade
+% Gamma_T = matriz com linha - ano, coluna - rentabilidade
 % y = vetor com linha - ano, rentabilidade benchmark
 % row = n�mero de meses
 % n_fund = quantidade de a��es
 % z_otimo: valor da fun��o objetivo
 
-    H = 2*Gamma'*Gamma;
+    H = 2*Gamma_T'*Gamma_T;
     
-   %f = -2*y'*Gamma; nosso f anterior
-    f = -2*Gamma'*y';
+   %f = -2*y'*Gamma_T; nosso f anterior
+    f = -2*Gamma_T'*y';
  
     I = eye(n_fund); 
     A = [-I];

@@ -18,7 +18,7 @@ def format_files(active, dt_start, dt_end, interval):
                        'High': 'maxima', 
                        'Low': 'minima', 
                        'Open': 'abertura', 
-                       'Adj Close': 'fechamento', 
+                       'Close': 'fechamento', 
                        'Volume': 'volume'}, inplace=True)
     df['variacao'] = (df['fechamento']-df['abertura'])/df['abertura']
     df = df[['data', 'maxima', 'minima', 'abertura', 'fechamento', 'variacao']]
@@ -44,7 +44,13 @@ def format_files(active, dt_start, dt_end, interval):
 
 def load_data(ativo, start_date, end_date):
     interval = 'm'
-    df = format_files(ativo,start_date,end_date,interval)
+    df = pd.DataFrame()
+    try:
+        df = format_files(ativo,start_date,end_date,interval)
+    except KeyError:
+        print(f'Erro no ativo {ativo}')
+        pass
+    
     return df
 
 

@@ -1,6 +1,6 @@
 function [ w, z_otimo, exitflag ] = min_var_err( Gamma, n_fund, n_total_fund, omegaB )
-
-    Sigma = cov(Gamma);
+    Gamma_T = Gamma';
+    Sigma = cov(Gamma_T);
 
     H = 2*Sigma;
     f = -2*Sigma*omegaB;

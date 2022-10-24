@@ -18,11 +18,11 @@ def initialization():
     print("5 - Mínima Variância do Erro")
     print("6 - Mínimo Erro Não Sistêmico")
     print("7 - Mínimo Erro Quadrático")
-    print("8 - Métodos de Programação Linear")
-    print("9 - Métodos Computacionais")
-    print("10 - Todos")
+    # print("8 - Métodos de Programação Linear")
+    # print("9 - Métodos Computacionais")
+    # print("10 - Todos")
 
-    modelo = input("Qual modelo deseja utilizar?\n")
+    modelo = input("Quais métodos deseja utilizar? (Separados por vírgula)\n")
 
     start_date = input("Data de treinamento inicial (AAAA-MM-dd): ")
     end_date = input("Data de treinamento final (AAAA-MM-dd): ")

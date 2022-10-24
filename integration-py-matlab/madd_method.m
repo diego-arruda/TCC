@@ -1,4 +1,5 @@
 function [ w, z_otimo, exitflag ] = madd_method( y, Gamma, row, n_fund )
+    Gamma_T = Gamma';
     var = 2*row+n_fund;
 
     I = eye(row);
@@ -9,7 +10,7 @@ function [ w, z_otimo, exitflag ] = madd_method( y, Gamma, row, n_fund )
     z = zeros(1,row);
     z1 = zeros(1,n_fund);
 
-    A = [-I -Gamma];
+    A = [-I -Gamma_T];
     b = [-y];
 
     Aeq = [z e'];

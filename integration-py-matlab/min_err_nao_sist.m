@@ -1,13 +1,14 @@
 function [ w, z_otimo, exitflag ] = min_err_nao_sist( y, Gamma, n_fund )
+    Gamma_T = Gamma';
 
-    Sigma = cov(Gamma);
+    Sigma = cov(Gamma_T);
     
     betas = zeros(1,n_fund);
     
     stdm = std(y);
     
     for i = 1:n_fund
-        covariance = cov(y,Gamma(:,i));
+        covariance = cov(y,Gamma_T(:,i));
         betas(i) = covariance(1,2)/(stdm^2);
     end;
     
