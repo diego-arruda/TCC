@@ -35,10 +35,10 @@ while out_flag:
     # y = np.array(y).T
     y = matlab.double(y)
 
-    print(y)
+    # print(y)
 
     for metodo in metodos:
-        Gamma = calculate_gamma(list_of_df,metodo,ativos,start_date,end_date)
+        Gamma,omegaB = calculate_gamma(list_of_df,metodo,ativos,start_date,end_date)
         # Gamma = np.array(Gamma).T
         Gamma = matlab.double(Gamma)
 
@@ -56,7 +56,9 @@ while out_flag:
         elif metodo == '4':
             w, z_otimo, exitflag = eng.dminmax_method(y, Gamma, n_periods, n_ativos, nargout=3)
         elif metodo == '5':
-            w, z_otimo, exitflag = eng.min_var_err(Gamma, n_ativos, n_total_benchmark, omegaB, nargout=3) # criar os parametros
+            n_total_benchmark = len(omegaB)
+            omegaB = matlab.double(omegaB)
+            w, z_otimo, exitflag = eng.min_var_err(Gamma, n_ativos, n_total_benchmark, omegaB, nargout=3)
         elif metodo == '6':
             w, z_otimo, exitflag = eng.min_err_nao_sist(y, Gamma, n_ativos, nargout=3)
         elif metodo == '7':

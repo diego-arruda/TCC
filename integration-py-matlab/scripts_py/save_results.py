@@ -23,7 +23,7 @@ def save_results(resultado,metodo,dt_start, dt_end, isBenchmark):
     if isBenchmark:
         file_name = f"{metodo.upper()}_{start_month}{start_year}_{end_month}{end_year}"
     else:
-        file_name = f"{metodos[metodo-1]}_{start_month}{start_year}_{end_month}{end_year}"
+        file_name = f"{metodos[int(metodo)-1]}_{start_month}{start_year}_{end_month}{end_year}"
 
     outdir = f"./results/{start_month}{start_year}_{end_month}{end_year}"
     if not os.path.exists(outdir):
@@ -31,6 +31,7 @@ def save_results(resultado,metodo,dt_start, dt_end, isBenchmark):
 
     fullname = os.path.join(outdir, f"{file_name}.csv")    
     resultado.columns = ['variacao']
-    print(resultado)
-    print(fullname)
+    # print(resultado)
+    print(f"Resultados salvos em: {fullname}\n")
+    # print(fullname)
     resultado.to_csv(fullname,index=False)
