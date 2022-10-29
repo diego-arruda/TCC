@@ -18,9 +18,6 @@ def initialization():
     print("5 - Mínima Variância do Erro")
     print("6 - Mínimo Erro Não Sistêmico")
     print("7 - Mínimo Erro Quadrático")
-    # print("8 - Métodos de Programação Linear")
-    # print("9 - Métodos Computacionais")
-    # print("10 - Todos")
 
     modelo = input("Quais métodos deseja utilizar? (Separados por vírgula)\n")
 

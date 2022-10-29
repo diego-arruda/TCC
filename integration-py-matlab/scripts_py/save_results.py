@@ -33,5 +33,6 @@ def save_results(resultado,metodo,dt_start, dt_end, isBenchmark):
     resultado.columns = ['variacao']
     # print(resultado)
     print(f"Resultados salvos em: {fullname}\n")
+    print("===================================================================\n")
     # print(fullname)
     resultado.to_csv(fullname,index=False)

@@ -53,9 +53,10 @@ while out_flag:
             sim_init_date = input("Início do período de teste desejado (AAAA-MM-dd): ")
             sim_final_date = input("Final do período de teste desejado (AAAA-MM-dd): ")
 
+            print("===================================================================\n")
+            print(F"RESULTADOS DO MÉTODO {metodo}\n")
             carteira = execute_test(w,ativos,sim_init_date, sim_final_date)
             resultado = carteira.sum(axis=1)
-            print(F"RESULTADOS DO MÉTODO {metodo}\n")
             save_results(resultado,metodo,sim_init_date, sim_final_date,False)
 
         else: 

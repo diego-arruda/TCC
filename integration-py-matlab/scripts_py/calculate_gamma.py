@@ -15,12 +15,10 @@ def calculate_gamma(metodo,n_periods,ativos,start_date,end_date):
                 if int(len(variacao)) == int(n_periods):
                     Gamma.append(variacao.to_list())
                 else:
-                    # print(composicao_ibovespa["codigo"].iloc[i]) 
                     mean = variacao.mean()
                     variacao = variacao.to_list()
                     for j in range(0,n_periods - len(variacao)):
                         variacao.insert(0,mean)
-                    # print(len(variacao))
                     Gamma.append(variacao)
     else:
         for ativo in ativos:
