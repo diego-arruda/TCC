@@ -1,6 +1,7 @@
 from .load_data import load_data
 import pandas as pd
 
+
 def execute_test(w,ativos,start_date, end_date):
     carteira = pd.DataFrame()
     for i in range(len(ativos)):

@@ -1,5 +1,4 @@
-
-def initialization(): 
+def initialization():
     benchmark = input("Escolha o benchmark que deseja rastrear.\n").upper()
     n_ativos = input("Quantos ativos deseja utilizar no rastreamento?\n")
     n_ativos = int(n_ativos)
@@ -8,8 +7,8 @@ def initialization():
 
     ativos = list()
 
-    for i in range(1,n_ativos+1):
-        ativos.append(input("Ativo {n_ativo}: ".format(n_ativo = i)).upper())
+    for i in range(1, n_ativos + 1):
+        ativos.append(input("Ativo {n_ativo}: ".format(n_ativo=i)).upper())
 
     print("1 - MAD")
     print("2 - Min-Max")
@@ -24,8 +23,4 @@ def initialization():
     start_date = input("Data de treinamento inicial (AAAA-MM-dd): ")
     end_date = input("Data de treinamento final (AAAA-MM-dd): ")
 
-    return benchmark,n_ativos,ativos,modelo, start_date, end_date
-
-
-    
-
+    return benchmark, n_ativos, ativos, modelo, start_date, end_date

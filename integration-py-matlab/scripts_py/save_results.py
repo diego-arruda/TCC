@@ -2,8 +2,8 @@ import datetime
 import os
 import pandas as pd
 
-def save_results(resultado,metodo,dt_start, dt_end, isBenchmark):
-    
+
+def save_results(resultado, metodo, dt_start, dt_end, isBenchmark):
     metodos = [
         "MAD",
         "MINMAX",
@@ -23,16 +23,16 @@ def save_results(resultado,metodo,dt_start, dt_end, isBenchmark):
     if isBenchmark:
         file_name = f"{metodo.upper()}_{start_month}{start_year}_{end_month}{end_year}"
     else:
-        file_name = f"{metodos[int(metodo)-1]}_{start_month}{start_year}_{end_month}{end_year}"
+        file_name = f"{metodos[int(metodo) - 1]}_{start_month}{start_year}_{end_month}{end_year}"
 
     outdir = f"./results/{start_month}{start_year}_{end_month}{end_year}"
     if not os.path.exists(outdir):
         os.mkdir(outdir)
 
-    fullname = os.path.join(outdir, f"{file_name}.csv")    
+    fullname = os.path.join(outdir, f"{file_name}.csv")
     resultado.columns = ['variacao']
     # print(resultado)
     print(f"Resultados salvos em: {fullname}\n")
     print("===================================================================\n")
     # print(fullname)
-    resultado.to_csv(fullname,index=False)
+    resultado.to_csv(fullname, index=False)
