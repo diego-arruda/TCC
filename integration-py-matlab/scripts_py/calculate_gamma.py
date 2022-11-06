@@ -13,15 +13,15 @@ def calculate_gamma(metodo, n_periods, ativos, start_date, end_date):
             df = load_data(composicao_ibovespa["codigo"].iloc[i], start_date, end_date)
             if not df.empty:
                 variacao = df["variacao"]
-                omegaB.append(composicao_ibovespa["part"].iloc[i])
                 if int(len(variacao)) == int(n_periods):
                     Gamma.append(variacao.to_list())
-                else:
-                    mean = variacao.mean()
-                    variacao = variacao.to_list()
-                    for j in range(0, n_periods - len(variacao)):
-                        variacao.insert(0, mean)
-                    Gamma.append(variacao)
+                    omegaB.append(composicao_ibovespa["part"].iloc[i])
+                # else:
+                #     mean = variacao.mean()
+                #     variacao = variacao.to_list()
+                #     for j in range(0, n_periods - len(variacao)):
+                #         variacao.insert(0, mean)
+                #     Gamma.append(variacao)
     else:
         for ativo in ativos:
             df = load_data(ativo, start_date, end_date)

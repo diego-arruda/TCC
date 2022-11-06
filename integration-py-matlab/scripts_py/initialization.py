@@ -23,4 +23,8 @@ def initialization():
     start_date = input("Data de treinamento inicial (AAAA-MM-dd): ")
     end_date = input("Data de treinamento final (AAAA-MM-dd): ")
 
-    return benchmark, n_ativos, ativos, modelo, start_date, end_date
+    start_date_val = input("Data de validação inicial (AAAA-MM-dd): ")
+    end_date_val = input("Data de validação final (AAAA-MM-dd): ")
+
+
+    return benchmark, n_ativos, ativos, modelo, start_date, end_date, start_date_val, end_date_val
