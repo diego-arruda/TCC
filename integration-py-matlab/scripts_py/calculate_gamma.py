@@ -15,7 +15,7 @@ def calculate_gamma(metodo, n_periods, ativos, start_date, end_date):
                 variacao = df["variacao"]
                 if int(len(variacao)) == int(n_periods):
                     Gamma.append(variacao.to_list())
-                    omegaB.append(composicao_ibovespa["part"].iloc[i])
+                    omegaB.append(float(composicao_ibovespa["part"].iloc[i])/100)
                 # else:
                 #     mean = variacao.mean()
                 #     variacao = variacao.to_list()

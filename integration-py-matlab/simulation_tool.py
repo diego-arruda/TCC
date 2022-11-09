@@ -20,8 +20,8 @@ while out_flag:
 
     benchmark, n_ativos, ativos, metodos, start_date, end_date, sim_init_date, sim_final_date = initialization()
     metodos = list(metodos.split(","))
-    benchmark = load_data(benchmark, start_date, end_date)
-    y = benchmark["variacao"].to_list()
+    benchmark_treino = load_data(benchmark, start_date, end_date)
+    y = benchmark_treino["variacao"].to_list()
     n_periods_len = len(y)
     n_periods = matlab.double(len(y))
     y = matlab.double(y)
@@ -41,6 +41,7 @@ while out_flag:
         elif metodo == '5':
             n_total_benchmark = len(omegaB)
             omegaB = matlab.double(omegaB)
+            print(omegaB)
             w, z_otimo, exitflag = eng.min_var_err(Gamma, n_ativos, n_total_benchmark, omegaB, nargout=3)
         elif metodo == '6':
             w, z_otimo, exitflag = eng.min_err_nao_sist(y, Gamma, n_ativos, nargout=3)
@@ -58,7 +59,8 @@ while out_flag:
             carteira = execute_test(w, ativos, sim_init_date, sim_final_date)
             resultado = carteira.sum(axis=1)
             resultado.columns = ['variacao_carteira']
-            save_results(resultado,benchmark["variacao"], metodo, start_date, end_date, sim_init_date, False)
+            benchmark_val = load_data(benchmark, sim_init_date, sim_final_date)
+            save_results(resultado,benchmark_val["variacao"], metodo, start_date, end_date, sim_init_date, False)
 
         else:
             print(f"Não foi possível achar solução para o método {metodo}.\n")

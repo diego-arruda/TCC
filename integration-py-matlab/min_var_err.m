@@ -21,7 +21,8 @@ function [ w, z_otimo, exitflag ] = min_var_err( Gamma, n_fund, n_total_fund, om
            1;
            zeros(n_total_fund-n_fund,1)];
 
-    [x, z, exitflag] = quadprog(H,f,A,b,Aeq,beq);
+    options = optimset('Display', 'off','LargeScale', 'off','MaxIter',1000);
+    [x, z, exitflag] = quadprog(H,f,A,b,Aeq,beq,[],[],[],options);
     w = x(1:n_fund,1);
     z_otimo = z + omegaB'*Sigma*omegaB;
     
