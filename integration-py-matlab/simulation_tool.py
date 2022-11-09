@@ -60,7 +60,7 @@ while out_flag:
             resultado = carteira.sum(axis=1)
             resultado.columns = ['variacao_carteira']
             benchmark_val = load_data(benchmark, sim_init_date, sim_final_date)
-            save_results(resultado,benchmark_val["variacao"], metodo, start_date, end_date, sim_init_date, False)
+            save_results(resultado,benchmark_val["variacao"], metodo, start_date, end_date, sim_init_date, sim_final_date, False)
 
         else:
             print(f"Não foi possível achar solução para o método {metodo}.\n")

@@ -3,15 +3,15 @@ import os
 import pandas as pd
 
 
-def save_results(res,benchmark, metodo, dt_start_treino, dt_end_treino, dt_start, isBenchmark):
+def save_results(res,benchmark, metodo, dt_start_treino, dt_end_treino, dt_start, dt_end, isBenchmark):
     metodos = [
         "MAD",
         "MINMAX",
         "MADD",
         "DMINMAX",
-        "MIN_VAR_ERR",
-        "MIN_ERR_NAO_SIST",
-        "MIN_ERR_QUAD"
+        "MVE",
+        "MENS",
+        "MEQ"
     ]
 
     resultado = pd.DataFrame(res)
@@ -35,9 +35,9 @@ def save_results(res,benchmark, metodo, dt_start_treino, dt_end_treino, dt_start
     end_date = dates[-1].upper()
 
     if isBenchmark:
-        file_name = f"{metodo.upper()}_{start_date}_{end_date}"
+        file_name = f"{metodo.upper()}"
     else:
-        file_name = f"{metodos[int(metodo) - 1]}_{start_date}_{end_date}"
+        file_name = f"{metodos[int(metodo) - 1]}"
 
     # outdir_treino = f"./results/T_{dt_start_treino}_{dt_end_treino}"
     # if not os.path.exists(outdir_treino):
@@ -47,7 +47,7 @@ def save_results(res,benchmark, metodo, dt_start_treino, dt_end_treino, dt_start
     if not os.path.exists(t_dir):
         os.mkdir(t_dir)
     
-    v_dir = f"{t_dir}/V_{start_date}_{end_date}"
+    v_dir = f"{t_dir}/V_{dt_start}_{dt_end}"
     if not os.path.exists(v_dir):
         os.mkdir(v_dir)
 
