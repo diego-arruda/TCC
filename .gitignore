@@ -3,3 +3,6 @@ __pycache__/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+# Python version with pyenv
+.python-version
