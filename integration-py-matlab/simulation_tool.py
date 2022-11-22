@@ -41,7 +41,6 @@ while out_flag:
         elif metodo == '5':
             n_total_benchmark = len(omegaB)
             omegaB = matlab.double(omegaB)
-            print(omegaB)
             w, z_otimo, exitflag = eng.min_var_err(Gamma, n_ativos, n_total_benchmark, omegaB, nargout=3)
         elif metodo == '6':
             w, z_otimo, exitflag = eng.min_err_nao_sist(y, Gamma, n_ativos, nargout=3)
