@@ -26,5 +26,6 @@ def initialization():
     start_date_val = input("Data de validação inicial (AAAA-MM-dd): ")
     end_date_val = input("Data de validação final (AAAA-MM-dd): ")
 
+    interval = input("Qual o intervalo de tempo de coleta dos dados? (m: mensal, w: semanal, d: diário) ")
 
-    return benchmark, n_ativos, ativos, modelo, start_date, end_date, start_date_val, end_date_val
+    return benchmark, n_ativos, ativos, modelo, start_date, end_date, start_date_val, end_date_val, interval

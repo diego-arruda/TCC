@@ -18,16 +18,16 @@ out_flag = True
 
 while out_flag:
 
-    benchmark, n_ativos, ativos, metodos, start_date, end_date, sim_init_date, sim_final_date = initialization()
+    benchmark, n_ativos, ativos, metodos, start_date, end_date, sim_init_date, sim_final_date, interval = initialization()
     metodos = list(metodos.split(","))
-    benchmark_treino = load_data(benchmark, start_date, end_date)
+    benchmark_treino = load_data(benchmark, start_date, end_date, interval)
     y = benchmark_treino["variacao"].to_list()
     n_periods_len = len(y)
     n_periods = matlab.double(len(y))
     y = matlab.double(y)
 
     for metodo in metodos:
-        Gamma, omegaB = calculate_gamma(metodo, n_periods_len, ativos, start_date, end_date)
+        Gamma, omegaB = calculate_gamma(metodo, n_periods_len, ativos, start_date, end_date, interval)
         Gamma = matlab.double(Gamma)
 
         if metodo == '1':
@@ -53,10 +53,10 @@ while out_flag:
 
             print("===================================================================\n")
             print(F"RESULTADOS DO MÉTODO {metodo}\n")
-            carteira = execute_test(w, ativos, sim_init_date, sim_final_date)
+            carteira = execute_test(w, ativos, sim_init_date, sim_final_date, interval)
             resultado = carteira.sum(axis=1)
             resultado.columns = ['variacao_carteira']
-            benchmark_val = load_data(benchmark, sim_init_date, sim_final_date)
+            benchmark_val = load_data(benchmark, sim_init_date, sim_final_date, interval)
             dates = benchmark_val["data"].to_list()
             save_results(resultado, benchmark_val["variacao"], metodo, start_date, end_date, sim_init_date,
                          sim_final_date, dates, False)

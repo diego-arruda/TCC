@@ -51,7 +51,7 @@ def format_files(active, dt_start, dt_end, interval):
     return df
 
 
-def load_data(ativo, start_date, end_date, interval="m"):
+def load_data(ativo, start_date, end_date, interval):
     df = pd.DataFrame()
     try:
         df = format_files(ativo, start_date, end_date, interval)
