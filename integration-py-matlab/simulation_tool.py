@@ -51,8 +51,6 @@ while out_flag:
             sys.exit("Método inválido!")
 
         if exitflag == 1:
-            # sim_init_date = input("Início do período de teste desejado (AAAA-MM-dd): ")
-            # sim_final_date = input("Final do período de teste desejado (AAAA-MM-dd): ")
 
             print("===================================================================\n")
             print(F"RESULTADOS DO MÉTODO {metodo}\n")
@@ -60,7 +58,9 @@ while out_flag:
             resultado = carteira.sum(axis=1)
             resultado.columns = ['variacao_carteira']
             benchmark_val = load_data(benchmark, sim_init_date, sim_final_date)
-            save_results(resultado,benchmark_val["variacao"], metodo, start_date, end_date, sim_init_date, sim_final_date, False)
+            dates = benchmark_val["data"].to_list()
+            save_results(resultado, benchmark_val["variacao"], metodo, start_date, end_date, sim_init_date,
+                         sim_final_date, dates, False)
 
         else:
             print(f"Não foi possível achar solução para o método {metodo}.\n")

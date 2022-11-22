@@ -3,7 +3,7 @@ import os
 import pandas as pd
 
 
-def save_results(res,benchmark, metodo, dt_start_treino, dt_end_treino, dt_start, dt_end, isBenchmark):
+def save_results(res,benchmark, metodo, dt_start_treino, dt_end_treino, dt_start, dt_end, dates, isBenchmark):
     metodos = [
         "MAD",
         "MINMAX",
@@ -17,31 +17,10 @@ def save_results(res,benchmark, metodo, dt_start_treino, dt_end_treino, dt_start
     resultado = pd.DataFrame(res)
     resultado.columns = ['variacao_carteira']
 
-    dates = []
-    int_month = int(datetime.datetime.strptime(dt_start, "%Y-%m-%d").strftime("%m"))
-    int_year = int(datetime.datetime.strptime(dt_start, "%Y-%m-%d").strftime("%Y"))
-
-    for i in range(len(resultado['variacao_carteira'])):
-        date = datetime.date(int_year, int_month, 1)
-        dates.append(date.strftime("%b").lower() + (date.strftime("%y")))
-
-        if int_month >= 12:
-            int_month = 1
-            int_year += 1
-        else:
-            int_month += 1
-
-    start_date = dates[0].upper()
-    end_date = dates[-1].upper()
-
     if isBenchmark:
         file_name = f"{metodo.upper()}"
     else:
         file_name = f"{metodos[int(metodo) - 1]}"
-
-    # outdir_treino = f"./results/T_{dt_start_treino}_{dt_end_treino}"
-    # if not os.path.exists(outdir_treino):
-    #     os.mkdir(outdir_treino)
 
     t_dir = f"./results/T_{dt_start_treino}_{dt_end_treino}"
     if not os.path.exists(t_dir):
